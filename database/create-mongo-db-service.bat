@@ -1,0 +1,1 @@
+mongod --bind_ip  127.0.0.1  --logpath  "C:\Source Code\Honeydew\master\database\mongodb.log"  --logappend  --dbpath  "C:\Source Code\Honeydew\master\database"  --port 27017 --serviceName HoneydewDb --serviceDisplayName "Honeydew MongoDb Service" --install
