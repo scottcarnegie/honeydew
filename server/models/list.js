@@ -31,6 +31,31 @@ class ListModel {
         .catch(err => reject(err))
     ));
   }
+
+  static AddItemById(listId, listitem, ownerId) {
+    return new Promise((resolve, reject) => (
+      List.findById(listId).populate('members')
+        .then((list) => {
+          const foundUser = list.members.find((member) => {
+            return member.firebaseId === ownerId;
+          });
+
+          if (!foundUser) {
+            reject(new Error('User is not a member of the list.'));
+          }
+
+          list.items.push({
+            description: listitem.description,
+            createdBy: foundUser._id,
+          });
+
+          return list.save()
+            .then(() => resolve())
+            .catch(err => reject(err));
+        })
+        .catch(err => reject(err))
+    ));
+  }
 }
 
 module.exports = ListModel;

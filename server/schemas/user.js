@@ -4,8 +4,8 @@ const UserSchema = new Schema({
   firebaseId: { type: String, unique: true },
   firstName: String,
   lastName: String,
-  status: Boolean,
   lists: [{ type: SchemaTypes.ObjectId, ref: 'list' }],
+  status: { type: Boolean, default: true },
 },
 {
   timestamps: true,
